@@ -1,0 +1,17 @@
+kupe roboty
+
+1. zaczne od najgorszego czyli logowania:
+	podstawowa struktura express, mysql lub mongo
+	zrobic zwykly formularz logowania
+	expres napsiac szyfrwoanie
+	spiac rzeby działało
+	
+2. zrobic baze danych pomyslec jakby to mialo wygladac
+3. przykladowy design zrobic
+4. napsiasc baze danych
+5. zrobic exppress js zeby dziallalo postamn
+6. sprawdzic czy dziala i zabezpeiczyc routy
+7. napisac panel administratora
+	- tu duzo
+8. napisac panel do wyswietlenia
+10. poprawic dokumentacje i itd
