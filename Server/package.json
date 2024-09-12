@@ -1,0 +1,52 @@
+{
+    "name": "server-school-panel",
+    "version": "1.0.0",
+    "main": "src/index.ts",
+    "scripts": {
+        "build": "rm -rf build/ && tsc -p tsconfig.build.json",
+        "test": "jest --config jest.config.ts --detectOpenHandles --coverage --maxWorkers=1",
+        "test:single": "jest --config jest.config.ts --detectOpenHandles --maxWorkers=1 --testPathPattern"
+    },
+    "keywords": [],
+    "author": "PanDamax",
+    "license": "MIT",
+    "description": "A basic api to school panel",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "compression": "^1.7.4",
+        "cookie-parser": "^1.4.6",
+        "crypto": "^1.0.1",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "express-rate-limit": "^7.4.0",
+        "helmet": "^7.1.0",
+        "hpp": "^0.2.3",
+        "joi": "^17.13.3",
+        "jsonwebtoken": "^9.0.2",
+        "mailtrap": "^3.4.0",
+        "multer": "^1.4.5-lts.1",
+        "mysql2": "^3.11.0",
+        "reflect-metadata": "^0.2.2",
+        "sequelize": "^6.37.3"
+    },
+    "devDependencies": {
+        "@types/express-rate-limit": "^6.0.0",
+        "@types/hpp": "^0.2.6",
+        "@types/multer": "^1.4.12",
+        "@types/bcryptjs": "^2.4.6",
+        "@types/compression": "^1.7.5",
+        "@types/cookie-parser": "^1.4.7",
+        "@types/express": "^4.17.21",
+        "@types/helmet": "^4.0.0",
+        "@types/jest": "^29.5.12",
+        "@types/jsonwebtoken": "^9.0.6",
+        "@types/node": "^22.5.4",
+        "@types/sequelize": "^4.28.20",
+        "@types/supertest": "^6.0.2",
+        "jest": "^29.7.0",
+        "supertest": "^7.0.0",
+        "ts-jest": "^29.2.5",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.5.4"
+    }
+}
