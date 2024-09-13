@@ -1,7 +1,7 @@
 
 ```
   _____        _                    _  _ _____                     _
- / ____|      | |                  | || |___  \ 	   	          | |
+ / ____|      | |                  | || |___  \                   | |
 | (___    ___ | |__    ___    ___  | || |___) |____,_  _ __   ___ | |
  \___ \  / __|| '_ \  / _ \  / _ \ | || |'___// _  | || '_ \ / _ \| |
  ____) || (__ | | | || (_) || (_) || || |    | (_| | || | | ||___/| |
@@ -12,23 +12,23 @@
 <details>
   <summary>Spis treści</summary>
   <ol>
-    <li><a href="#wprowadzenie">Wprowadzenie</a></li>
-    <li><a href="#architektura">Architektura</a></li>
+    <li><a href="#🚀-wprowadzenie">Wprowadzenie</a></li>
+    <li><a href="#💎-architektura">Architektura</a></li>
     <li><a href="#wymagania">Wymagania</a></li>
     <li><a href="#instalacja">Instalacja</a></li>
     <li><a href="#konfiguracja">Konfiguracja</a></li>
     <li><a href="#uruchomienie">Uruchomienie</a></li>
     <li><a href="#komponenty">Komponenty</a></li>
-    <li><a href="#api">API</a></li>
+    <li><a href="#list-of-routes">Lista routów</a></li>
     <li><a href="#baza-danych">Baza danych</a></li>
-    <li><a href="#współtworzenie">Współtworzenie</a></li>
-    <li><a href="#problemy">Problemy</a></li>
-    <li><a href="#licencja">Licencja</a></li>
+    <li><a href="#screens">Screens</a></li>
+    <li><a href="#💳-licencja">Licencja</a></li>
+    <li><a href="#📬-prosimy-o-zgłoszenie-problemu">Problemy</a></li>
   </ol>
 </details>
 
 
-## Wprowadzenie
+## 🚀 Wprowadzenie
 
 -   **Cel projektu:** 
 Stworzenie aplikacji do szkolnej tablicy ogłoszeń, która pozwala nauczycielom na łatwe przesyłanie wiadomości przez panel administracyjny, a następnie automatyczne wyświetlanie ich na tablicy dla uczniów.
@@ -43,36 +43,40 @@ Aplikacja zawiera frontend do obsługi panelu administracyjnego oraz samej tabli
 
 <br>
 
-## Architektura
+## 💎 Architektura
 
 
-### 1. **Panel Admina**
-
-[![React][React.js]][React-url] 
-[![TypeScript][TypeScript]][TypeScript-url]
-[![Tailwind CSS][TailwindCSS]][TailwindCSS-url]
-[![React DOM][ReactDOM]][ReactDOM-url]
-
-
-### 2. **Tablica Ogłoszeń**
+### 1. **Panel Admina:**
 
 [![React][React.js]][React-url] 
 [![TypeScript][TypeScript]][TypeScript-url]
 [![Tailwind CSS][TailwindCSS]][TailwindCSS-url]
 [![React DOM][ReactDOM]][ReactDOM-url]
 
-### 3. **Backend**
+
+### 2. **Tablica Ogłoszeń:**
+
+[![React][React.js]][React-url] 
+[![TypeScript][TypeScript]][TypeScript-url]
+[![Tailwind CSS][TailwindCSS]][TailwindCSS-url]
+[![React DOM][ReactDOM]][ReactDOM-url]
+
+### 3. **Backend:**
 
 [![Node.js][Node.js]][Node.js-url]
 [![Express.js][Express.js]][Express.js-url]
 [![TypeScript][TypeScript]][TypeScript-url]
 [![JWT][JWT]][JWT-url]
-[![Helmet][Helmet]][Helmet-url]
+[![Jest][Jest]][Jest-url]
+[![Joi][Joi]][Joi-url]
+[![Sequelize][Sequelize]][Sequelize-url]
+[![Multer][Multer]][Multer-url]
 
-### 3. **Baza**
+### 3. **Baza danych:**
 
-[![MongoDB][MongoDB]][MongoDB-url]
 [![MySQL][MySQL]][MySQL-url]
+
+<br>
 
 ## Wymagania
 
@@ -98,83 +102,80 @@ Aplikacja zawiera frontend do obsługi panelu administracyjnego oraz samej tabli
 
 <br>
 
-## Endpointy API
+## List of Routes
 
-### `Auth`
+```sh
+# Auth:
++--------+------------------------------+
+  Method | URI
++--------+------------------------------+
+  GET    | /auth/check-auth
+  POST   | /auth/veryfi-email
+  POST   | /auth/logout
+  POST   | /auth/login
+  POST   | /auth/reset-password/:token
+  POST   | /auth/forgot-password
++--------+------------------------------+
 
-| Method | URL                  | Description                                                                                           |
-|--------|----------------------|-------------------------------------------------------------------------------------------------------|
-| POST   | /auth/login          | Przesyła dane logowania (nazwę użytkownika i hasło). |
+# Replacements:
++--------+------------------------------+
+  Method | URI
++--------+------------------------------+
+  GET    | /api/replacements 
+  POST   | /api/replacements
+  PUT    | /api/replacements/:id
+  DELETE | /api/replacements/:id
++--------+------------------------------+
 
-### `Replacements`
+# Classrooms:
++--------+------------------------------+
+  Method | URI
++--------+------------------------------+
+  GET    | /api/classrooms 
+  POST   | /api/classrooms
+  PUT    | /api/classrooms/:id
+  DELETE | /api/classrooms/:id
++--------+------------------------------+
 
-| Method | URL                 | Description                            |
-|--------|---------------------|----------------------------------------|
-| GET    | /replacements       | Pobiera listę zastępstw.             |
-| GET    | /replacements/:id   | Pobiera konkretne zastępstwo według ID. |
-| POST   | /replacements       | Tworzy nowy zastępstwo.                 |
-| PUT    | /replacements/:id   | Aktualizuje konkretne zastępstwo według ID. |
-| DELETE | /replacements/:id   | Usuwa konkretne zastępstwo według ID.   |
+# Announcements:
++--------+------------------------------+
+  Method | URI
++--------+------------------------------+
+  GET    | /api/announcements 
+  POST   | /api/announcements
+  PUT    | /api/announcements/:id
+  DELETE | /api/announcements/:id
++--------+------------------------------+
 
-### `Classrooms`
+# Views:
++--------+------------------------------+
+  Method | URI
++--------+------------------------------+
+  GET    | /api/views/:id 
+  PUT    | /api/views/:id
++--------+------------------------------+
 
-| Method | URL              | Description                            |
-|--------|------------------|----------------------------------------|
-| GET    | /classrooms      | Pobiera listę sal lekcyjnych.          |
-| GET    | /classrooms/:id  | Pobiera konkretną salę lekcyjną według ID. |
-| POST   | /classrooms      | Tworzy nową salę lekcyjną.             |
-| PUT    | /classrooms/:id  | Aktualizuje konkretną salę lekcyjną według ID. |
-| DELETE | /classrooms/:id  | Usuwa konkretną salę lekcyjną według ID. |
+# Slider:
++--------+------------------------------+
+  Method | URI
++--------+------------------------------+
+  GET    | /api/slider 
+  POST   | /api/slider
+  PUT    | /api/slider/:id
+  DELETE | /api/slider/:id
++--------+------------------------------+
 
-### `Informations`
-
-| Method | URL                | Description                            |
-|--------|--------------------|----------------------------------------|
-| GET    | /informations      | Pobiera listę elementów informacyjnych.|
-| GET    | /informations/:id  | Pobiera konkretne element informacyjny według ID. |
-| PUT    | /informations/:id  | Aktualizuje konkretne element informacyjny według ID. |
-
-### `Header`
-
-| Method | URL              | Description                       |
-|--------|------------------|-----------------------------------|
-| GET    | /header          | Pobiera informacje nagłówka.       |
-| GET    | /header/:id      | Pobiera konkretny nagłówek według ID. |
-| PUT    | /header/:id      | Aktualizuje konkretny nagłówek według ID. |
-
-### Slider
-
-| Method | URL                  | Description                                    |
-|--------|----------------------|------------------------------------------------|
-| GET    | /slider              | Pobiera listę elementów suwaka.               |
-| GET    | /slider/:id          | Pobiera konkretny element suwaka według ID.   |
-| POST   | /slider              | Tworzy nowy element suwaka.                   |
-| PUT    | /slider/:id          | Aktualizuje konkretny element suwaka według ID.|
-| DELETE | /slider/:id          | Usuwa konkretny element suwaka według ID.    |
-
-### Hidden-sections
-
-| Method | URL                        | Description                                    |
-|--------|----------------------------|------------------------------------------------|
-| GET    | /hidden-sections           | Pobiera listę ukrytych sekcji.                 |
-| GET    | /hidden-sections/:id       | Pobiera konkretną ukrytą sekcję według ID.     |
-| PUT    | /hidden-sections/:id       | Aktualizuje konkretną ukrytą sekcję według ID. |
-
-### Users
-
-| Method | URL                  | Description                                    |
-|--------|----------------------|------------------------------------------------|
-| GET    | /users               | Pobiera listę użytkowników.                   |
-| GET    | /users/:id           | Pobiera konkretnego użytkownika według ID.    |
-| POST   | /users               | Tworzy nowego użytkownika.                    |
-| PUT    | /users/:id           | Aktualizuje konkretnego użytkownika według ID.|
-| DELETE | /users/:id           | Usuwa konkretnego użytkownika według ID.     |
-           |
-
-
-
-
-
+# Users:
++--------+------------------------------+
+  Method | URI
++--------+------------------------------+
+  GET    | /api/users 
+  GET    | /api/users/:id
+  POST   | /api/users
+  PUT    | /api/users/:id
+  DELETE | /api/users/:id
++--------+------------------------------+
+```
 
 <br>
 
@@ -184,85 +185,83 @@ Aplikacja zawiera frontend do obsługi panelu administracyjnego oraz samej tabli
 
 | Nazwa        | Typ        | Null | Domyślnie | Dodatkowe      |
 |--------------|------------|------|-----------|----------------|
-| classroom_id | int(11)    | Nie  | Brak      | AUTO_INCREMENT |
-| html         | text       | Tak  | NULL      |                |
-| manual_plan  | text       | Tak  | NULL      |                |
-| show_manual  | tinyint(1) | Tak  | true      |                |
+| id           | int(11)    | Nie  | Brak      | AUTO_INCREMENT |
+| html         | text       | Nie  | Brak      |                |
+| title        | text       | Nie  | Brak      |                |
 
-### Tabela: `header`
+### Tabela: `views`
 
 | Nazwa            | Typ           | Null | Domyślnie | Dodatkowe      |
 |------------------|---------------|------|-----------|----------------|
-| header_id        | int(11)       | Nie  | Brak      | AUTO_INCREMENT |
-| bell             | varchar(255)  | Tak  | NULL      |                |
-| img_school_logo  | varchar(255)  | Tak  | NULL      |                |
-
-### Tabela: `hidden_sections`
-
-| Nazwa             | Typ        | Null | Domyślnie | Dodatkowe      |
-|-------------------|------------|------|-----------|----------------|
-| hidden_sections_id| int(11)    | Nie  | Brak      | AUTO_INCREMENT |
-| classrooms        | tinyint(1) | Tak  | true      |                |
-| information       | tinyint(1) | Tak  | true      |                |
-| replacements      | tinyint(1) | Tak  | true      |                |
-| slider            | tinyint(1) | Tak  | true      |                |
+| id               | int(11)       | Nie  | Brak      | AUTO_INCREMENT |
+| schoolLogo       | varchar(255)  | Nie  | Brak      |                |
+| viewMode         | enum('school', 'event', 'slider', 'alarm', 'assembly')  | Nie  | school    |                |
 
 
-### Tabela: `information`
+### Tabela: `announcements`
 
 | Nazwa            | Typ          | Null | Domyślnie | Dodatkowe      |
 |------------------|--------------|------|-----------|----------------|
-| information_id   | int(11)      | Nie  | Brak      | AUTO_INCREMENT |
-| text             | text         | Tak  | NULL      |                |
-| img_information  | varchar(255) | Tak  | NULL      |                |
-| show_img         | tinyint(1)   | Tak  | NULL      |                |
+| id               | int(11)      | Nie  | Brak      | AUTO_INCREMENT |
+| text             | varchar(255) | Nie  | Brak      |                |
+| img_information  | varchar(255) | Nie  | Brak      |                |
 
 ### Tabela: `replacements`
 
 | Nazwa             | Typ          | Null | Domyślnie | Dodatkowe      |
 |-------------------|--------------|------|-----------|----------------|
-| replacements_id   | int(11)      | Nie  | Brak      | AUTO_INCREMENT |
-| lesson            | varchar(255) | Tak  | NULL      |                |
-| teacher           | varchar(255) | Tak  | NULL      |                |
-| branch            | varchar(255) | Tak  | NULL      |                |
-| subject           | varchar(255) | Tak  | NULL      |                |
-| room              | varchar(255) | Tak  | NULL      |                |
-| date              | varchar(255) | Tak  | NULL      |                |
-| deputy            | varchar(255) | Tak  | NULL      |                |
+| id                | int(11)      | Nie  | Brak      | AUTO_INCREMENT |
+| lesson            | varchar(255) | Nie  | Brak      |                |
+| teacher           | varchar(255) | Nie  | Brak      |                |
+| branch            | varchar(255) | Nie  | Brak      |                |
+| subject           | varchar(255) | Nie  | Brak      |                |
+| room              | varchar(255) | Nie  | Brak      |                |
+| date              | varchar(255) | Nie  | Brak      |                |
+| deputy            | varchar(255) | Nie  | Brak      |                |
 
 ### Tabela: `slider`
 
 | Nazwa         | Typ          | Null | Domyślnie | Dodatkowe      |
 |---------------|--------------|------|-----------|----------------|
-| slider_id     | int(11)      | Nie  | Brak      | AUTO_INCREMENT |
-| img_slider    | varchar(255) | Tak  | NULL      |                |
+| id            | int(11)      | Nie  | Brak      | AUTO_INCREMENT |
+| file          | varchar(255) | Nie  | Brak      |                |
 
 ### Tabela: `users`
 
 | Nazwa          | Typ           | Null | Domyślnie | Dodatkowe      |
 |----------------|---------------|------|-----------|----------------|
-| user_id        | int(11)       | Nie  | Brak      | AUTO_INCREMENT |
-| admin          | tinyint(1)    | Tak  | false     |                |
-| user_name      | varchar(255)  | Tak  | NULL      |     			 |
-| user_lastname  | varchar(255)  | Tak  | NULL      |  				 |
-| login          | varchar(255)  | Tak  | NULL      |  				 |
-| email          | varchar(255)  | Tak  | NULL      |  				 |
-| password       | varchar(255)  | Tak  | NULL      |  				 |
-| avatar         | varchar(255)  | Tak  | NULL      |  				 |
+| id             | int(11)       | Nie  | Brak      | AUTO_INCREMENT |
+| name           | varchar(255)  | Nie  | Brak      |     			     |
+| lastname       | varchar(255)  | Nie  | Brak      |     			     |
+| avatar         | varchar(255)  | Tak  | NULL      |     			     |
+| login          | varchar(255)  | Nie  | Brak      |     			     |
+| email          | varchar(255)  | Nie  | Brak      |     			     |
+| password       | varchar(255)  | Nie  | Brak      |     			     |
+| isVerified     | tinyint(1)    | Tak  | false     |                |
+| lastLogin      | 	datetime     | Tak  | current_timestamp()|     	 |
+| resetPasswordToken| varchar(255)  | Tak  | NULL   |     			     |
+| resetPasswordExpireAt| datetime  | Tak  | NULL  |     			    |
+| verificationToken| varchar(255)  | Tak  | NULL   |     			     |
+| verificationTokenExpireAt| datetime  | Tak  | NULL  |     			    |
+| isAdmin          | tinyint(1)    | Nie  | false     |                |
+
+## Screens
 
 
-## Problemy
 
--   dopisze pózniej
-
-## Licencja
-
-Ten projekt jest objęty licencją MIT. Szczegóły dotyczące licencji znajdują się w pliku [LICENSE](./LICENSE).
+## 💳 Licencja
 
 Licencja MIT pozwala na dowolne użycie, modyfikację i dystrybucję oprogramowania, pod warunkiem zachowania informacji o autorze i licencji w dostarczonych plikach. Oznacza to, że możesz korzystać z kodu w swoich projektach, zarówno komercyjnych, jak i niekomercyjnych, bez obaw o naruszenie praw autorskich.
 
 Szczegółowe informacje można znaleźć w [MIT License](https://opensource.org/licenses/MIT).
 
+## 📬 Prosimy o zgłoszenie problemu
+
+Proszę o pozostawienie pytania lub wątpliwości jako sprawy.
+
+Dołożę wszelkich starań, aby odpowiedzieć i zastanowić się.
+
+Dziękuję za zainteresowanie.
 
 
 
@@ -285,17 +284,23 @@ Szczegółowe informacje można znaleźć w [MIT License](https://opensource.org
 [Node.js]: https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white
 [Node.js-url]: https://nodejs.org/
 
-[Express.js]: https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white
+[Express.js]: https://img.shields.io/badge/Express.js-red?style=for-the-badge&logo=express&logoColor=white
 [Express.js-url]: https://expressjs.com/
 
-[JWT]: https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=json-web-tokens&logoColor=white
+[JWT]: https://img.shields.io/badge/JWT-2B037A?style=for-the-badge&logo=json-web-tokens&logoColor=white
 [JWT-url]: https://jwt.io/
-
-[Helmet]: https://img.shields.io/badge/Helmet-000000?style=for-the-badge&logo=npm&logoColor=white
-[Helmet-url]: https://helmetjs.github.io/
-
-[MongoDB]: https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white
-[MongoDB-url]: https://www.mongodb.com/
 
 [MySQL]: https://img.shields.io/badge/MySQL-00758F?style=for-the-badge&logo=mysql&logoColor=white
 [MySQL-url]: https://www.mysql.com/
+
+[Jest]: https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white
+[Jest-url]: https://jestjs.io/
+
+[Joi]: https://img.shields.io/badge/Joi-2A6EB6?style=for-the-badge&logo=joi&logoColor=white
+[Joi-url]: https://joi.dev/
+
+[Sequelize]: https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=sequelize&logoColor=white
+[Sequelize-url]: https://sequelize.org/
+
+[Multer]: https://img.shields.io/badge/Multer-0078D4?style=for-the-badge&logo=multer&logoColor=white
+[Multer-url]: https://www.npmjs.com/package/multer
