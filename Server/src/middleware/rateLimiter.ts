@@ -5,6 +5,7 @@ import path from 'path';
 import { PRODUCTION } from '../config/config';
 
 const logFilePath = path.join(__dirname, '..', 'logs', 'rateLimit.log');
+const bannedIPs = new Map<string, number>();
 
 function formatDate(date: Date): string {
     return date.toISOString().replace('T', ' ').slice(0, 19);
@@ -35,17 +36,34 @@ async function logAttack(req: Request): Promise<void> {
 }
 
 const limiter: RateLimitRequestHandler = rateLimit({
-    windowMs: 15 * 60 * 1000,   // 15 minutes
-    max: 130,                   // 130 requests per windowMs
+    windowMs: 1 * 60 * 1000,                                                                // 1 minuta
+    max: 100,                                                                               // 100 requests per windowMs
     message: { message: "Too many requests from this IP, please try again after 15 minutes" },
     standardHeaders: true,
     legacyHeaders: false,
     handler: async (req: Request, res: Response) => {
+        const ip = req.ip || '';
         res.status(429).json({ message: "Too many requests from this IP, please try again after 15 minutes" });
         await logAttack(req);
+        bannedIPs.set(ip, Date.now() + 24 * 60 * 60 * 1000);
     }
 });
 
+function isBanned(ip: string): boolean {
+    const banExpiration = bannedIPs.get(ip);
+    if (!banExpiration) return false;
+    if (Date.now() > banExpiration) {
+        bannedIPs.delete(ip);
+        return false;
+    }
+    return true;
+}
+
 export function rateLimiter(req: Request, res: Response, next: NextFunction): void {
-    limiter(req, res, next);
+    const ip = req.ip || ''; 
+    if (isBanned(ip)) {
+        res.status(403).json({ message: "Your IP has been banned for 24 hours due to excessive requests." });
+    } else {
+        limiter(req, res, next);
+    }
 }

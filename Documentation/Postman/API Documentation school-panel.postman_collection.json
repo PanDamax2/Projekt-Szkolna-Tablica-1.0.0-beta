@@ -1,18 +1,18 @@
 {
 	"info": {
-		"_postman_id": "a9d61d92-2633-48ec-8689-7bffff38e0b7",
+		"_postman_id": "a6772849-86da-45d2-bc6d-d0bfd15f8345",
 		"name": "API Documentation school-panel",
 		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "32994108",
-		"_collection_link": "https://dark-meadow-91461.postman.co/workspace/API-Documentation~0b29edac-04a9-44e2-8cad-6a1b0e907ce1/collection/32994108-a9d61d92-2633-48ec-8689-7bffff38e0b7?action=share&source=collection_link&creator=32994108"
+		"_collection_link": "https://dark-meadow-91461.postman.co/workspace/test~760a4553-7e6f-4df6-8279-82fa3b241627/collection/32994108-a6772849-86da-45d2-bc6d-d0bfd15f8345?action=share&source=collection_link&creator=32994108"
 	},
 	"item": [
 		{
 			"name": "Auth",
 			"item": [
 				{
-					"name": "http://localhost:3000/auth/login",
+					"name": "http://localhost:5000/auth/veryfi-email",
 					"event": [
 						{
 							"listen": "test",
@@ -39,67 +39,82 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\"\n}",
+							"raw": "{\n    \"code\": \"485762\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/login",
+						"url": {
+							"raw": "http://localhost:5000/auth/veryfi-email",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"veryfi-email"
+							]
+						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "Replacements",
-			"item": [
+				},
 				{
-					"name": "http://localhost:3000/replacements",
+					"name": "http://localhost:5000/auth/logout",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:3000/replacements",
-						"description": "Gets information about the authenticated user."
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:3000/replacements/:id",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
 							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:3000/replacements/1",
-						"description": "Gets information about the authenticated user."
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"logout"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/replacements",
+					"name": "http://localhost:5000/auth/login",
 					"event": [
 						{
 							"listen": "test",
@@ -123,20 +138,265 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"lesson\": 2,\r\n    \"teacher\": \"Dawid Krawczyk\",\r\n    \"branch\": \"Angielski\",\r\n    \"subject\": \"Algebra\",\r\n    \"room\": 10,\r\n    \"date\": \"2024-02-10\",\r\n    \"deputy\": \"Anna Nowak\"\r\n}\r\n",
+							"raw": "{\r\n    \"login\": \"karol.lichon@zsz.bobowa.pl\",\r\n    \"password\": \"adminadmin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/replacements",
+						"url": {
+							"raw": "http://localhost:5000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:5000/auth/check-auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"karol.lichon@zsz.bobowa.pl\",\r\n    \"password\": \"adminadmin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/check-auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"check-auth"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:5000/auth/reset-password/:token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"adminadminn\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/reset-password/8324b4fdad36553a1a3b9be10f0e933ab773980d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"reset-password",
+								"8324b4fdad36553a1a3b9be10f0e933ab773980d"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:5000/auth/forgot-password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"karol.lichon@zsz.bobowa.pl\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/forgot-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"forgot-password"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Replacements",
+			"item": [
+				{
+					"name": "http://localhost:5000/api/replacements",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/replacements",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"replacements"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/replacements/:id",
+					"name": "http://localhost:5000/api/replacements",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lesson\": \"2\",\r\n    \"teacher\": \"Dawid Krawczyk\",\r\n    \"branch\": \"Angielski\",\r\n    \"subject\": \"Algebra\",\r\n    \"room\": \"10\",\r\n    \"date\": \"2024-02-10\",\r\n    \"deputy\": \"Anna Nowak\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/replacements",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"replacements"
+							]
+						},
+						"description": "Gets information about the authenticated user."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:5000/api/replacements/:id",
 					"event": [
 						{
 							"listen": "test",
@@ -160,20 +420,32 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"replacements_id\": 2,\r\n    \"lesson\": 3,\r\n    \"teacher\": \"Piotr Nowak\",\r\n    \"branch\": \"Fizyka\",\r\n    \"subject\": \"Mechanika\",\r\n    \"room\": 102,\r\n    \"date\": \"2024-03-10\",\r\n    \"deputy\": \"Katarzyna Kowalska\"\r\n}\r\n\r\n",
+							"raw": "{\r\n    \"lesson\": \"3\",\r\n    \"teacher\": \"Piotr Nowak\",\r\n    \"branch\": \"Fizyka\",\r\n    \"subject\": \"Mechanika\",\r\n    \"room\": \"102\",\r\n    \"date\": \"2024-03-10\",\r\n    \"deputy\": \" \"\r\n}\r\n\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/replacements/21",
+						"url": {
+							"raw": "http://localhost:5000/api/replacements/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"replacements",
+								"4"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/replacements/:id",
+					"name": "http://localhost:5000/api/replacements/:id",
 					"event": [
 						{
 							"listen": "test",
@@ -195,7 +467,19 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:3000/replacements/22",
+						"url": {
+							"raw": "http://localhost:5000/api/replacements/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"replacements",
+								"3"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
@@ -207,7 +491,7 @@
 			"name": "Classrooms",
 			"item": [
 				{
-					"name": "http://localhost:3000/classrooms",
+					"name": "http://localhost:5000/api/classrooms",
 					"event": [
 						{
 							"listen": "test",
@@ -215,41 +499,32 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/classrooms",
+						"url": {
+							"raw": "http://localhost:5000/api/classrooms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"classrooms"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/classrooms/1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:3000/classrooms/1",
-						"description": "Gets information about the authenticated user."
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:3000/classrooms",
+					"name": "http://localhost:5000/api/classrooms",
 					"event": [
 						{
 							"listen": "test",
@@ -272,21 +547,38 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"html\": \"<p>Plan lekcji</p>\",\r\n    \"manual_plan\": \"Plan ręczny do klasy\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "5bt",
+									"type": "text"
+								},
+								{
+									"key": "html",
+									"value": "<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\" class=\"tabela\">\n<tbody><tr>\n<th>Nr</th>\n<th>Godz</th>\n<th>Poniedziałek</th>\n<th>Wtorek</th>\n<th>Środa</th>\n<th>Czwartek</th>\n<th>Piątek</th>\n</tr>\n<tr>\n<td class=\"nr\">1</td>\n<td class=\"g\"> 8:00- 8:45</td>\n<td class=\"l\">&nbsp;</td>\n<td class=\"l\"><span class=\"p\">j.polski</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n5.html\" class=\"n\">EB</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s11.html\" class=\"s\">28</a></td>\n<td class=\"l\"><span class=\"p\">NTI</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n30.html\" class=\"n\">SZ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s6.html\" class=\"s\">17</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">OiZPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp pr ap in-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n14.html\" class=\"n\">TG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s3.html\" class=\"s\">21</a></span></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">jęz.ang.zaw-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n20.html\" class=\"n\">PA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s16.html\" class=\"s\">16</a></span><br><span style=\"font-size:85%\"><span class=\"p\">j.angielski-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n9.html\" class=\"n\">JF</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s15.html\" class=\"s\">20</a></span></td>\n</tr>\n<tr>\n<td class=\"nr\">2</td>\n<td class=\"g\"> 8:50- 9:35</td>\n<td class=\"l\">&nbsp;</td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">jęz.ang.zaw-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n20.html\" class=\"n\">PA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s15.html\" class=\"s\">20</a></span><br><span style=\"font-size:85%\"><span class=\"p\">jęz.ang.zaw-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n31.html\" class=\"n\">SS</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s9.html\" class=\"s\">26</a></span></td>\n<td class=\"l\"><span class=\"p\">zaj. wych.</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n25.html\" class=\"n\">PP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s11.html\" class=\"s\">28</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">OiZPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp pr ap in-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n14.html\" class=\"n\">TG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s3.html\" class=\"s\">21</a></span></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">j.angielski-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n20.html\" class=\"n\">PA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s16.html\" class=\"s\">16</a></span><br><span style=\"font-size:85%\"><span class=\"p\">j.angielski-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n9.html\" class=\"n\">JF</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s10.html\" class=\"s\">27</a></span></td>\n</tr>\n<tr>\n<td class=\"nr\">3</td>\n<td class=\"g\"> 9:40-10:25</td>\n<td class=\"l\"><span class=\"p\">r_matematyka</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n24.html\" class=\"n\">RP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s7.html\" class=\"s\">24</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">j.angielski-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n20.html\" class=\"n\">PA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s15.html\" class=\"s\">20</a></span><br><span style=\"font-size:85%\"><span class=\"p\">j.niemiecki-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n23.html\" class=\"n\">KP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s16.html\" class=\"s\">16</a></span></td>\n<td class=\"l\"><span class=\"p\">matematyka</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n24.html\" class=\"n\">RP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s7.html\" class=\"s\">24</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">2Zp POiNOPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp pr ap in-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n14.html\" class=\"n\">TG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s3.html\" class=\"s\">21</a></span></td>\n<td class=\"l\"><span class=\"p\">religia</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n21.html\" class=\"n\">PŁ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s15.html\" class=\"s\">20</a></td>\n</tr>\n<tr>\n<td class=\"nr\">4</td>\n<td class=\"g\">10:40-11:25</td>\n<td class=\"l\"><span class=\"p\">r_matematyka</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n24.html\" class=\"n\">RP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s7.html\" class=\"s\">24</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">OiZPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">wf-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n28.html\" class=\"n\">JŚ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s8.html\" class=\"s\">25</a></span></td>\n<td class=\"l\"><span class=\"p\">matematyka</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n24.html\" class=\"n\">RP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s7.html\" class=\"s\">24</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">2Zp POiNOPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp pr ap in-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n14.html\" class=\"n\">TG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s3.html\" class=\"s\">21</a></span></td>\n<td class=\"l\"><span class=\"p\">matematyka</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n24.html\" class=\"n\">RP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s7.html\" class=\"s\">24</a></td>\n</tr>\n<tr>\n<td class=\"nr\">5</td>\n<td class=\"g\">11:30-12:15</td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">wf-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n13.html\" class=\"n\">MG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s13.html\" class=\"s\">gim1</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp ad baz d-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n16.html\" class=\"n\">KJ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s1.html\" class=\"s\">9</a></span></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">OiZPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">wf-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n28.html\" class=\"n\">JŚ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s8.html\" class=\"s\">25</a></span></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">j.niemiecki-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n23.html\" class=\"n\">KP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s16.html\" class=\"s\">16</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp ad baz d-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n16.html\" class=\"n\">KJ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s5.html\" class=\"s\">19</a></span></td>\n<td class=\"l\"><span class=\"p\">matematyka</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n24.html\" class=\"n\">RP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s7.html\" class=\"s\">24</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">2Zp POiNOPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp pr ap in-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n14.html\" class=\"n\">TG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s3.html\" class=\"s\">21</a></span></td>\n</tr>\n<tr>\n<td class=\"nr\">6</td>\n<td class=\"g\">12:20-13:05</td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">2Zp ad baz d-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n16.html\" class=\"n\">KJ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s1.html\" class=\"s\">9</a></span></td>\n<td class=\"l\"><span class=\"p\">historia</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n8.html\" class=\"n\">KF</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s10.html\" class=\"s\">27</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">wf-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n13.html\" class=\"n\">MG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s14.html\" class=\"s\">gim2</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp ad baz d-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n16.html\" class=\"n\">KJ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s5.html\" class=\"s\">19</a></span></td>\n<td class=\"l\"><span class=\"p\">NTI</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n30.html\" class=\"n\">SZ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s5.html\" class=\"s\">19</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">2Zp POiNOPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp pr ap in-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n14.html\" class=\"n\">TG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s3.html\" class=\"s\">21</a></span></td>\n</tr>\n<tr>\n<td class=\"nr\">7</td>\n<td class=\"g\">13:10-13:55</td>\n<td class=\"l\">&nbsp;</td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">OiZPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp pr ap in-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n14.html\" class=\"n\">TG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s3.html\" class=\"s\">21</a></span></td>\n<td class=\"l\"><span class=\"p\">j.polski</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n5.html\" class=\"n\">EB</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s11.html\" class=\"s\">28</a></td>\n<td class=\"l\"><span class=\"p\">NTI</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n30.html\" class=\"n\">SZ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s5.html\" class=\"s\">19</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">OiZPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span></td>\n</tr>\n<tr>\n<td class=\"nr\">8</td>\n<td class=\"g\">14:00-14:45</td>\n<td class=\"l\">&nbsp;</td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">2Zp pr ap in-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n14.html\" class=\"n\">TG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s3.html\" class=\"s\">21</a></span></td>\n<td class=\"l\"><span class=\"p\">j.polski</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n5.html\" class=\"n\">EB</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s11.html\" class=\"s\">28</a></td>\n<td class=\"l\">&nbsp;</td>\n<td class=\"l\">&nbsp;</td>\n</tr>\n<tr>\n<td class=\"nr\">9</td>\n<td class=\"g\">14:50-15:35</td>\n<td class=\"l\">&nbsp;</td>\n<td class=\"l\">&nbsp;</td>\n<td class=\"l\"><span class=\"p\">WOS</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n15.html\" class=\"n\">JI</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s12.html\" class=\"s\">29</a></td>\n<td class=\"l\">&nbsp;</td>\n<td class=\"l\">&nbsp;</td>\n</tr>\n</tbody></table>",
+									"type": "text"
 								}
-							}
+							]
 						},
-						"url": "http://localhost:3000/classrooms",
+						"url": {
+							"raw": "http://localhost:5000/api/classrooms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"classrooms"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/classrooms/:id",
+					"name": "http://localhost:5000/api/classrooms/:id",
 					"event": [
 						{
 							"listen": "test",
@@ -309,21 +601,39 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"html\": \"<hklkjlhlkjljkljkljkljkljkljklj\",\r\n    \"manual_plan\": \"kaaa\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "4Bt",
+									"type": "text"
+								},
+								{
+									"key": "html",
+									"value": "<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\" class=\"tabela\">\n<tbody><tr>\n<th>Nr</th>\n<th>Godz</th>\n<th>Poniedziałek</th>\n<th>Wtorek</th>\n<th>Środa</th>\n<th>Czwartek</th>\n<th>Piątek</th>\n</tr>\n<tr>\n<td class=\"nr\">1</td>\n<td class=\"g\"> 8:00- 8:45</td>\n<td class=\"l\">&nbsp;</td>\n<td class=\"l\"><span class=\"p\">j.polski</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n5.html\" class=\"n\">EB</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s11.html\" class=\"s\">28</a></td>\n<td class=\"l\"><span class=\"p\">NTI</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n30.html\" class=\"n\">SZ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s6.html\" class=\"s\">17</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">OiZPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp pr ap in-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n14.html\" class=\"n\">TG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s3.html\" class=\"s\">21</a></span></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">jęz.ang.zaw-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n20.html\" class=\"n\">PA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s16.html\" class=\"s\">16</a></span><br><span style=\"font-size:85%\"><span class=\"p\">j.angielski-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n9.html\" class=\"n\">JF</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s15.html\" class=\"s\">20</a></span></td>\n</tr>\n<tr>\n<td class=\"nr\">2</td>\n<td class=\"g\"> 8:50- 9:35</td>\n<td class=\"l\">&nbsp;</td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">jęz.ang.zaw-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n20.html\" class=\"n\">PA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s15.html\" class=\"s\">20</a></span><br><span style=\"font-size:85%\"><span class=\"p\">jęz.ang.zaw-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n31.html\" class=\"n\">SS</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s9.html\" class=\"s\">26</a></span></td>\n<td class=\"l\"><span class=\"p\">zaj. wych.</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n25.html\" class=\"n\">PP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s11.html\" class=\"s\">28</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">OiZPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp pr ap in-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n14.html\" class=\"n\">TG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s3.html\" class=\"s\">21</a></span></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">j.angielski-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n20.html\" class=\"n\">PA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s16.html\" class=\"s\">16</a></span><br><span style=\"font-size:85%\"><span class=\"p\">j.angielski-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n9.html\" class=\"n\">JF</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s10.html\" class=\"s\">27</a></span></td>\n</tr>\n<tr>\n<td class=\"nr\">3</td>\n<td class=\"g\"> 9:40-10:25</td>\n<td class=\"l\"><span class=\"p\">r_matematyka</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n24.html\" class=\"n\">RP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s7.html\" class=\"s\">24</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">j.angielski-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n20.html\" class=\"n\">PA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s15.html\" class=\"s\">20</a></span><br><span style=\"font-size:85%\"><span class=\"p\">j.niemiecki-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n23.html\" class=\"n\">KP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s16.html\" class=\"s\">16</a></span></td>\n<td class=\"l\"><span class=\"p\">matematyka</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n24.html\" class=\"n\">RP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s7.html\" class=\"s\">24</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">2Zp POiNOPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp pr ap in-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n14.html\" class=\"n\">TG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s3.html\" class=\"s\">21</a></span></td>\n<td class=\"l\"><span class=\"p\">religia</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n21.html\" class=\"n\">PŁ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s15.html\" class=\"s\">20</a></td>\n</tr>\n<tr>\n<td class=\"nr\">4</td>\n<td class=\"g\">10:40-11:25</td>\n<td class=\"l\"><span class=\"p\">r_matematyka</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n24.html\" class=\"n\">RP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s7.html\" class=\"s\">24</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">OiZPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">wf-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n28.html\" class=\"n\">JŚ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s8.html\" class=\"s\">25</a></span></td>\n<td class=\"l\"><span class=\"p\">matematyka</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n24.html\" class=\"n\">RP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s7.html\" class=\"s\">24</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">2Zp POiNOPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp pr ap in-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n14.html\" class=\"n\">TG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s3.html\" class=\"s\">21</a></span></td>\n<td class=\"l\"><span class=\"p\">matematyka</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n24.html\" class=\"n\">RP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s7.html\" class=\"s\">24</a></td>\n</tr>\n<tr>\n<td class=\"nr\">5</td>\n<td class=\"g\">11:30-12:15</td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">wf-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n13.html\" class=\"n\">MG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s13.html\" class=\"s\">gim1</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp ad baz d-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n16.html\" class=\"n\">KJ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s1.html\" class=\"s\">9</a></span></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">OiZPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">wf-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n28.html\" class=\"n\">JŚ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s8.html\" class=\"s\">25</a></span></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">j.niemiecki-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n23.html\" class=\"n\">KP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s16.html\" class=\"s\">16</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp ad baz d-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n16.html\" class=\"n\">KJ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s5.html\" class=\"s\">19</a></span></td>\n<td class=\"l\"><span class=\"p\">matematyka</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n24.html\" class=\"n\">RP</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s7.html\" class=\"s\">24</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">2Zp POiNOPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp pr ap in-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n14.html\" class=\"n\">TG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s3.html\" class=\"s\">21</a></span></td>\n</tr>\n<tr>\n<td class=\"nr\">6</td>\n<td class=\"g\">12:20-13:05</td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">2Zp ad baz d-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n16.html\" class=\"n\">KJ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s1.html\" class=\"s\">9</a></span></td>\n<td class=\"l\"><span class=\"p\">historia</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n8.html\" class=\"n\">KF</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s10.html\" class=\"s\">27</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">wf-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n13.html\" class=\"n\">MG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s14.html\" class=\"s\">gim2</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp ad baz d-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n16.html\" class=\"n\">KJ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s5.html\" class=\"s\">19</a></span></td>\n<td class=\"l\"><span class=\"p\">NTI</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n30.html\" class=\"n\">SZ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s5.html\" class=\"s\">19</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">2Zp POiNOPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp pr ap in-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n14.html\" class=\"n\">TG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s3.html\" class=\"s\">21</a></span></td>\n</tr>\n<tr>\n<td class=\"nr\">7</td>\n<td class=\"g\">13:10-13:55</td>\n<td class=\"l\">&nbsp;</td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">OiZPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span><br><span style=\"font-size:85%\"><span class=\"p\">2Zp pr ap in-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n14.html\" class=\"n\">TG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s3.html\" class=\"s\">21</a></span></td>\n<td class=\"l\"><span class=\"p\">j.polski</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n5.html\" class=\"n\">EB</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s11.html\" class=\"s\">28</a></td>\n<td class=\"l\"><span class=\"p\">NTI</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n30.html\" class=\"n\">SZ</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s5.html\" class=\"s\">19</a></td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">OiZPS-1/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n11.html\" class=\"n\">GA</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s4.html\" class=\"s\">18</a></span></td>\n</tr>\n<tr>\n<td class=\"nr\">8</td>\n<td class=\"g\">14:00-14:45</td>\n<td class=\"l\">&nbsp;</td>\n<td class=\"l\"><span style=\"font-size:85%\"><span class=\"p\">2Zp pr ap in-2/2</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n14.html\" class=\"n\">TG</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s3.html\" class=\"s\">21</a></span></td>\n<td class=\"l\"><span class=\"p\">j.polski</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n5.html\" class=\"n\">EB</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s11.html\" class=\"s\">28</a></td>\n<td class=\"l\">&nbsp;</td>\n<td class=\"l\">&nbsp;</td>\n</tr>\n<tr>\n<td class=\"nr\">9</td>\n<td class=\"g\">14:50-15:35</td>\n<td class=\"l\">&nbsp;</td>\n<td class=\"l\">&nbsp;</td>\n<td class=\"l\"><span class=\"p\">WOS</span> <a href=\"https://plan.zsz.bobowa.pl/plany/n15.html\" class=\"n\">JI</a> <a href=\"https://plan.zsz.bobowa.pl/plany/s12.html\" class=\"s\">29</a></td>\n<td class=\"l\">&nbsp;</td>\n<td class=\"l\">&nbsp;</td>\n</tr>\n</tbody></table>",
+									"type": "text"
 								}
-							}
+							]
 						},
-						"url": "http://localhost:3000/classrooms/7",
+						"url": {
+							"raw": "http://localhost:5000/api/classrooms/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"classrooms",
+								"3"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/classrooms/:id",
+					"name": "http://localhost:5000/api/classrooms/:id",
 					"event": [
 						{
 							"listen": "test",
@@ -345,7 +655,19 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:3000/classrooms/8",
+						"url": {
+							"raw": "http://localhost:5000/api/classrooms/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"classrooms",
+								"2"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
@@ -354,10 +676,10 @@
 			"description": "The `/me` endpoints let you manage information about the authenticated user."
 		},
 		{
-			"name": "Header",
+			"name": "Views",
 			"item": [
 				{
-					"name": "http://localhost:3000/header",
+					"name": "http://localhost:5000/api/views/:id",
 					"event": [
 						{
 							"listen": "test",
@@ -373,13 +695,86 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/header",
+						"url": {
+							"raw": "http://localhost:5000/api/views/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"views",
+								"1"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/header/:id",
+					"name": "http://localhost:5000/api/views/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Karol/Desktop/341471757_566919838867590_1749724292485173218_n.webp"
+								},
+								{
+									"key": "viewMode",
+									"value": "school",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/views/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"views",
+								"1"
+							]
+						},
+						"description": "Gets information about the authenticated user."
+					},
+					"response": []
+				}
+			],
+			"description": "The `/me` endpoints let you manage information about the authenticated user."
+		},
+		{
+			"name": "Announcements",
+			"item": [
+				{
+					"name": "http://localhost:5000/api/announcements",
 					"event": [
 						{
 							"listen": "test",
@@ -395,13 +790,66 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/header/1",
+						"url": {
+							"raw": "http://localhost:5000/api/announcements",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"announcements"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/header/:id",
+					"name": "http://localhost:5000/api/announcements",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": \"21.30.2024\",\r\n    \"text\": \"zebranie xdd daskljdaskd sadnaskjld\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/announcements",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"announcements"
+							]
+						},
+						"description": "Gets information about the authenticated user."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:5000/api/announcements/:id",
 					"event": [
 						{
 							"listen": "test",
@@ -425,68 +873,32 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"bell\": \"Nowe dzwonki\",\r\n    \"img_school_logo\": \"https://zslie1.edu.pl/wp-content/uploads/2021/03/Zespol-Szkol-Licealnych-i-Ekonomicznych-nr-1.png\"\r\n}\r\n",
+							"raw": "{\r\n    \"data\": \"21.30.2024         sdasdasdasds\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/header/1",
-						"description": "Gets information about the authenticated user."
-					},
-					"response": []
-				}
-			],
-			"description": "The `/me` endpoints let you manage information about the authenticated user."
-		},
-		{
-			"name": "Informations",
-			"item": [
-				{
-					"name": "http://localhost:3000/informations",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:3000/informations",
+						"url": {
+							"raw": "http://localhost:5000/api/announcements/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"announcements",
+								"2"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/informations/:id",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:3000/informations/1",
-						"description": "Gets information about the authenticated user."
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:3000/informations/:id",
+					"name": "http://localhost:5000/api/announcements/:id",
 					"event": [
 						{
 							"listen": "test",
@@ -500,7 +912,7 @@
 						}
 					],
 					"request": {
-						"method": "PUT",
+						"method": "DELETE",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -510,14 +922,26 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"information_id\": 1,\r\n    \"text\": \"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos eius at accusantium provident culpa, aliquid asperiores tenetur deleniti, pariatur aspernatur vitae eligendi odio veritatis impedit maiores minus commodi adipisci architecto, necessitatibus minima sapiente eos voluptatum porro facere. Aperiam, iusto iure.\",\r\n    \"img_information\": \"https://i.ibb.co/KhjpyJq/logo.webp\",\r\n    \"show_img\": 0\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/informations/1",
+						"url": {
+							"raw": "http://localhost:5000/api/announcements/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"announcements",
+								"1"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
@@ -529,7 +953,7 @@
 			"name": "Slider",
 			"item": [
 				{
-					"name": "http://localhost:3000/slider",
+					"name": "http://localhost:5000/api/slider",
 					"event": [
 						{
 							"listen": "test",
@@ -545,35 +969,24 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/slider",
+						"url": {
+							"raw": "http://localhost:5000/api/slider",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"slider"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/slider/:id",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:3000/slider/2",
-						"description": "Gets information about the authenticated user."
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:3000/slider",
+					"name": "http://localhost:5000/api/slider",
 					"event": [
 						{
 							"listen": "test",
@@ -597,20 +1010,31 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"img_slider\": \"https://edunews.pl/images/obrazki/klasa21.jpg\"\r\n    }",
+							"raw": "{\r\n    \"file\": \"empty\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/slider",
+						"url": {
+							"raw": "http://localhost:5000/api/slider",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"slider"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/slider/:id",
+					"name": "http://localhost:5000/api/slider/:id",
 					"event": [
 						{
 							"listen": "test",
@@ -633,21 +1057,40 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Karol/Desktop/1725710796592.webp"
+								},
+								{
+									"key": "dfgdf",
+									"value": "fgfgfg",
+									"type": "text",
+									"disabled": true
 								}
-							}
+							]
 						},
-						"url": "http://localhost:3000/slider/8",
+						"url": {
+							"raw": "http://localhost:5000/api/slider/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"slider",
+								"6"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/slider/:id",
+					"name": "http://localhost:5000/api/slider/id",
 					"event": [
 						{
 							"listen": "test",
@@ -669,92 +1112,19 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:3000/slider/8",
-						"description": "Gets information about the authenticated user."
-					},
-					"response": []
-				}
-			],
-			"description": "The `/me` endpoints let you manage information about the authenticated user."
-		},
-		{
-			"name": "Hidden-sections",
-			"item": [
-				{
-					"name": "http://localhost:3000/hidden-sections",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:3000/hidden-sections",
-						"description": "Gets information about the authenticated user."
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:3000/hidden-sections/:id",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:3000/hidden-sections/1",
-						"description": "Gets information about the authenticated user."
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:3000/hidden-sections/:id",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \"classrooms\": 1,\r\n        \"information\": 1,\r\n        \"replacements\": 1,\r\n        \"slider\": 1\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+						"url": {
+							"raw": "http://localhost:5000/api/slider/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"slider",
+								"7"
+							]
 						},
-						"url": "http://localhost:3000/hidden-sections/1",
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
@@ -766,7 +1136,7 @@
 			"name": "Users",
 			"item": [
 				{
-					"name": "http://localhost:3000/users",
+					"name": "http://localhost:5000/api/users",
 					"event": [
 						{
 							"listen": "test",
@@ -774,20 +1144,32 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/users",
+						"url": {
+							"raw": "http://localhost:5000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/users/:id",
+					"name": "http://localhost:5000/api/users/:id",
 					"event": [
 						{
 							"listen": "test",
@@ -795,20 +1177,33 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/users/1",
+						"url": {
+							"raw": "http://localhost:5000/api/users/33",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"33"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/users",
+					"name": "http://localhost:5000/api/users",
 					"event": [
 						{
 							"listen": "test",
@@ -832,20 +1227,31 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"user_name\": \"patryk\",\r\n    \"user_lastname\": \"patryk\",\r\n    \"login\": \"patryk\",\r\n    \"email\": \"patryk@example.com\",\r\n    \"password\": \"patrykpatryk\",\r\n    \"admin\": 1\r\n}",
+							"raw": "{\r\n  \"name\": \"adminadmin\",\r\n  \"lastname\": \"asdmin\",\r\n  \"login\": \"adminsghhzd\",\r\n  \"password\": \"adminadmin\",\r\n  \"email\": \"karol.lichon@zsz.bobowa.pl\",\r\n  \"isAdmin\": false\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/users",
+						"url": {
+							"raw": "http://localhost:5000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/users/:id",
+					"name": "http://localhost:5000/api/users/:id",
 					"event": [
 						{
 							"listen": "test",
@@ -869,20 +1275,32 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"is_admin\": 1\r\n}",
+							"raw": "{\r\n    \"login\": \"adminnn\",\r\n    \"email\": \"karol.lichon@fff.pl\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/users/8",
+						"url": {
+							"raw": "http://localhost:5000/api/users/49",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"49"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/users/:id",
+					"name": "http://localhost:5000/api/users/:id",
 					"event": [
 						{
 							"listen": "test",
@@ -904,7 +1322,28 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:3000/users/6",
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/users/49",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"49"
+							]
+						},
 						"description": "Gets information about the authenticated user."
 					},
 					"response": []

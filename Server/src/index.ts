@@ -36,6 +36,7 @@ export const Main = async () => {
     app.use(express.json({ limit: '5mb' }));
     app.use(compression());
     app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+    app.disable('x-powered-by')
 
     logging.log('----------------------------------------');
     logging.log('Connect to MySQL');
@@ -67,8 +68,8 @@ export const Main = async () => {
     logging.log('Define Controller Routing');
     logging.log('----------------------------------------');
     defineRoutes(
-        [UserController, AuthController, ViewController, SliderController, 
-            ReplacementController, AnncsController, ClassroomController, MainController], app);
+        [MainController, UserController, AuthController, ViewController, SliderController, 
+            ReplacementController, AnncsController, ClassroomController], app);
 
     logging.log('----------------------------------------');
     logging.log('Define Routing Error');
