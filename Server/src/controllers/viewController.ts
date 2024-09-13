@@ -1,14 +1,14 @@
-import { Route } from '../decorators/route';
-import { Controller } from '../decorators/controller';
-import { Request, Response, NextFunction } from 'express';
 import View from '../models/view.model';
-import { MysqlGet } from '../decorators/mysql/get';
 import { upload } from '../config/multer';
+import { Route } from '../decorators/route';
 import { Validate } from '../decorators/validate';
-import { updateViewSchema } from '../validators/viewValidator/updateViewValidator';
-import { verifyToken } from '../middleware/verifyToken';
+import { MysqlGet } from '../decorators/mysql/get';
+import { Controller } from '../decorators/controller';
 import { fileHelpersView } from '../helpers/viewHelper';
+import { verifyToken } from '../middleware/verifyToken';
+import { Request, Response, NextFunction } from 'express';
 import { validateSchema } from '../middleware/validationMulter';
+import { updateViewSchema } from '../validators/viewValidator/updateViewValidator';
 
 @Controller('/api')
 class ViewController {

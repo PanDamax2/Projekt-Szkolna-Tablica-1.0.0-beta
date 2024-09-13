@@ -1,0 +1,7 @@
+# Server
+server/node_modules
+server/.env
+server/coverage
+server/build
+server/package-lock.json
+!uploads/.gitkeep

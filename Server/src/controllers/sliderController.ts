@@ -1,17 +1,16 @@
-import { Route } from '../decorators/route';
-import { Controller } from '../decorators/controller';
-import { Request, Response, NextFunction } from 'express';
-import Slider from '../models/slider.models';
-import { MysqlGetAll } from '../decorators/mysql/getAll';
-import { fileHelpersSlider, sliderRemoveTimestamps } from '../helpers/sliderHelper';
-import { verifyToken } from '../middleware/verifyToken';
-import { Validate } from '../decorators/validate';
 import { upload } from '../config/multer';
-import { createSliderSchema } from '../validators/sliderValidator/sliderCreateValidator';
+import { Route } from '../decorators/route';
+import Slider from '../models/slider.models';
+import { Validate } from '../decorators/validate';
+import { Controller } from '../decorators/controller';
+import { verifyToken } from '../middleware/verifyToken';
+import { MysqlGetAll } from '../decorators/mysql/getAll';
 import { MysqlCreate } from '../decorators/mysql/create';
-import { MysqlDelete } from '../decorators/mysql/delete';
-import { updateSliderSchema } from '../validators/sliderValidator/sliderUpdateValidaotr';
+import { Request, Response, NextFunction } from 'express';
 import { validateSchema } from '../middleware/validationMulter';
+import { fileHelpersSlider, sliderRemoveTimestamps } from '../helpers/sliderHelper';
+import { createSliderSchema } from '../validators/sliderValidator/sliderCreateValidator';
+import { updateSliderSchema } from '../validators/sliderValidator/sliderUpdateValidaotr';
 
 @Controller('/api')
 class SliderController {
@@ -70,9 +69,26 @@ class SliderController {
     }
 
     @Route('delete', '/slider/:id', verifyToken)
-    @MysqlDelete(Slider)
-    delete(req: Request, res: Response, next: NextFunction) {
-        return res.status(200).json({ success: true, message: 'Usunieto zdjecie z slidera' });
+    async delete(req: Request, res: Response, next: NextFunction) {
+        const sliderId = req.params.id;
+
+        try {
+            const slider = await Slider.findByPk(sliderId);
+            if (!slider) {
+                return res.status(404).json({ success: false, message: 'Nie znaleziono zdjęcia' });
+            }
+
+            if (slider.file) {
+                await fileHelpersSlider.removeOldFile(slider.file);
+            }
+
+            await slider.destroy();
+
+            return res.status(200).json({ success: true, message: 'Usunięto zdjęcie z slidera' });
+        } catch (error) {
+            logging.error('Error deleting slider:', error);
+            return res.status(500).json({ success: false, message: 'Internal server error' });
+        }
     }
 }
 

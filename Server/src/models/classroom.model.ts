@@ -4,6 +4,7 @@ import { ClassroomAttributes, ClassroomCreationAttributes } from "../interfaces/
 
 class Classroom extends Model<ClassroomAttributes, ClassroomCreationAttributes> {
     declare id: CreationOptional<number>;
+    declare title: string;
     declare html: string;
     declare readonly createdAt: CreationOptional<Date>;
     declare readonly updatedAt: CreationOptional<Date>;
@@ -15,6 +16,10 @@ Classroom.init(
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
+        },
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         html: {
             type: DataTypes.TEXT,

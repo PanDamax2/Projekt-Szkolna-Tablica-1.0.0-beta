@@ -18,8 +18,12 @@ import { defineRoutes } from './modules/routes';
 import { corsHandler } from './middleware/corsHandler';
 import { rateLimiter } from './middleware/rateLimiter';
 import { routeNotFound } from './middleware/routeNotFound';
+import AnncsController from './controllers/anncsController';
 import { loggingHandler } from './middleware/loggingHandler';
 import SliderController from './controllers/sliderController';
+import ClassroomController from './controllers/classController';
+import ReplacementController from './controllers/replacementController';
+import MainController from './controllers/mainController';
 
 export const app = express();
 export let httpServer: ReturnType<typeof http.createServer>;
@@ -32,7 +36,7 @@ export const Main = async () => {
     app.use(express.json({ limit: '5mb' }));
     app.use(compression());
     app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-    
+
     logging.log('----------------------------------------');
     logging.log('Connect to MySQL');
     logging.log('----------------------------------------');
@@ -47,7 +51,7 @@ export const Main = async () => {
         logging.error(error);
         logging.log('----------------------------------------');
     }
-    
+
     logging.log('----------------------------------------');
     logging.log('Logging & Configuration');
     logging.log('----------------------------------------');
@@ -62,7 +66,9 @@ export const Main = async () => {
     logging.log('----------------------------------------');
     logging.log('Define Controller Routing');
     logging.log('----------------------------------------');
-    defineRoutes([UserController, AuthController, ViewController, SliderController], app);
+    defineRoutes(
+        [UserController, AuthController, ViewController, SliderController, 
+            ReplacementController, AnncsController, ClassroomController, MainController], app);
 
     logging.log('----------------------------------------');
     logging.log('Define Routing Error');

@@ -12,6 +12,7 @@ export interface AnnouncementCreationAttributes extends Optional<AnnouncementAtt
 
 export interface ClassroomAttributes {
     id: number;
+    title: string;
     html: string;
     createdAt?: Date;
     updatedAt?: Date;

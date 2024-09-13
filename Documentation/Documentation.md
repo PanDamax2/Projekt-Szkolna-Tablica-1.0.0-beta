@@ -1,4 +1,3 @@
-
 ```
   _____        _                    _  _ _____                     _
  / ____|      | |                  | || |___  \ 	   	          | |
@@ -6,8 +5,7 @@
  \___ \  / __|| '_ \  / _ \  / _ \ | || |'___// _  | || '_ \ / _ \| |
  ____) || (__ | | | || (_) || (_) || || |    | (_| | || | | ||___/| |
 |_____/  \___||_| |_| \___/  \___/ |_||_|     \__,_|_||_| |_|\___ |_|
-```                                    
- 
+```
 
 <details>
   <summary>Spis treści</summary>
@@ -28,42 +26,43 @@
   </ol>
 </details>
 
-
 ## Wprowadzenie
 
--   **Cel projektu:** 
-Stworzenie aplikacji do szkolnej tablicy ogłoszeń, która pozwala nauczycielom na łatwe przesyłanie wiadomości przez panel administracyjny, a następnie automatyczne wyświetlanie ich na tablicy dla uczniów.
+- **Cel projektu:**
+  Stworzenie aplikacji do szkolnej tablicy ogłoszeń, która pozwala nauczycielom na łatwe przesyłanie wiadomości przez panel administracyjny, a następnie automatyczne wyświetlanie ich na tablicy dla uczniów.
 
--   **Zakres projektu:**
-Aplikacja zawiera frontend do obsługi panelu administracyjnego oraz samej tablicy, backend do zarządzania danymi, a także bazę danych do przechowywania wszystkich informacji.
+- **Zakres projektu:**
+  Aplikacja zawiera frontend do obsługi panelu administracyjnego oraz samej tablicy, backend do zarządzania danymi, a także bazę danych do przechowywania wszystkich informacji.
 
--   **Kluczowe funkcje:**
-    -   Logowanie i autoryzacja nauczycieli.
-    -   Intuicyjny interfejs dla nauczycieli, gdzie mogą tworzyć, edytować, usuwać i zarządzać ogłoszeniami.
-    -   Wyświetlanie ogłoszeń na tablicy w czasie rzeczywistym.
+- **Kluczowe funkcje:**
+  - Logowanie i autoryzacja nauczycieli.
+  - Intuicyjny interfejs dla nauczycieli, gdzie mogą tworzyć, edytować, usuwać i zarządzać ogłoszeniami.
+  - Wyświetlanie ogłoszeń na tablicy w czasie rzeczywistym.
 
 ## Architektura
 
 ### Frontend
 
--   **React.js**: 
-    -   **Tablica informacyjna**
-    -   **Panel admina**
+- **React.js**:
+  - **Tablica informacyjna**
+  - **Panel admina**
 
+### Backend
 
-### Backend 
--  **Express.js**
+- **Express.js**
 
 ### Baza danyc
-   - **MongoDB**
-   - **MySQL**
+
+- **MongoDB**
+- **MySQL**
 
 ### Struktura komunikacji
 
--   **Frontend**: Komunikuje się z backendem za pomocą HTTP przy użyciu fetch do wykonywania zapytań API.
--   **Backend**: Przetwarza zapytania, wykonuje operacje na bazie danych i zwraca odpowiedzi do frontend’u.
+- **Frontend**: Komunikuje się z backendem za pomocą HTTP przy użyciu fetch do wykonywania zapytań API.
+- **Backend**: Przetwarza zapytania, wykonuje operacje na bazie danych i zwraca odpowiedzi do frontend’u.
 
 ### Diagram architektury
+
 ```
 admin panel:
                    +---------------+
@@ -100,88 +99,66 @@ tablica:
                    +------+--------+
                    |    Szkolny    |
                    |     Panel     |
-                   +------+--------+			          
+                   +------+--------+
 				          |
 				          v
 	               +---------------+
                    |   Użytkownik  |
-                   +------+--------+			          
+                   +------+--------+
 ```
-
 
 ## Wymagania
 
--   Node.js (wersja >= 18)
--   npm
--   MongoDB (jeśli wybierzesz MongoDB jako bazę danych)
--   MySQL (jeśli wybierzesz MySQL jako bazę danych)
+- Node.js (wersja >= 18)
+- npm
+- MongoDB (jeśli wybierzesz MongoDB jako bazę danych)
+- MySQL (jeśli wybierzesz MySQL jako bazę danych)
 
 ## Instalacja
 
 ### Klonowanie repozytorium
 
-
 ### Instalacja zależności
 
 #### Frontend:
 
-
-
 #### Backend:
-
 
 ## Konfiguracja
 
 ### Backend
 
-
-
 #### MongoDB
-
-
 
 #### MySQL
 
-
-
 ### Frontend
-
-
 
 ## Uruchomienie
 
 ### Backend
 
-
-
 ### Frontend
 
-
-
 ## Struktura katalogów
-
-
 
 ## Komponenty
 
 ### Frontend
 
--   
+-
 
 ### Backend
-
-
 
 ## API
 
 ### Endpointy
 
--   
+-
 
 ## Baza danych
 
 ### MongoDB
-
 
 ## Baza danych
 
@@ -190,98 +167,89 @@ Projekt School Panel może korzystać z dwóch typów baz danych: MongoDB (NoSQL
 ### MongoDB
 
 MongoDB to baza danych typu NoSQL, która przechowuje dane w formacie dokumentów JSON. W projekcie School Panel używane są następujące kolekcje:
-  
-
-
 
 ### MySQL
 
 MySQL to relacyjna baza danych, która przechowuje dane w tabelach. W projekcie School Panel używane są następujące tabele:
 
-
 ### Tabela: `classroom`
 
-| Nazwa        | Typ        | Null | Domyślnie | Dodatkowe      |
-|--------------|------------|------|-----------|----------------|
-| classroom_id | int(11)    | Nie  | Brak      | AUTO_INCREMENT |
-| html         | text       | Tak  | NULL      |                |
-| manual_plan  | text       | Tak  | NULL      |                |
-| show_manual  | tinyint(1) | Tak  | true      |                |
+| Nazwa     | Typ      | Null | Domyślnie         | Dodatkowe   |
+| --------- | -------- | ---- | ----------------- | ----------- |
+| id        | int(11)  | Nie  | AUTO_INCREMENT    | PRIMARY KEY |
+| html      | text     | Nie  | Brak              |             |
+| createdAt | datetime | Tak  | CURRENT_TIMESTAMP |             |
+| updatedAt | datetime | Tak  | CURRENT_TIMESTAMP |             |
 
-### Tabela: `header`
+### Tabela: `announcements`
 
-| Nazwa            | Typ           | Null | Domyślnie | Dodatkowe      |
-|------------------|---------------|------|-----------|----------------|
-| header_id        | int(11)       | Nie  | Brak      | AUTO_INCREMENT |
-| bell             | varchar(255)  | Tak  | NULL      |                |
-| img_school_logo  | varchar(255)  | Tak  | NULL      |                |
+| Nazwa     | Typ          | Null | Domyślnie         | Dodatkowe   |
+| --------- | ------------ | ---- | ----------------- | ----------- |
+| id        | int(11)      | Nie  | AUTO_INCREMENT    | PRIMARY KEY |
+| data      | varchar(255) | Nie  | Brak              |             |
+| text      | varchar(255) | Nie  | Brak              |             |
+| createdAt | datetime     | Tak  | CURRENT_TIMESTAMP |             |
+| updatedAt | datetime     | Tak  | CURRENT_TIMESTAMP |             |
 
-### Tabela: `hidden_sections`
+### Tabela: `view`
 
-| Nazwa             | Typ        | Null | Domyślnie | Dodatkowe      |
-|-------------------|------------|------|-----------|----------------|
-| hidden_sections_id| int(11)    | Nie  | Brak      | AUTO_INCREMENT |
-| classrooms        | tinyint(1) | Tak  | true      |                |
-| information       | tinyint(1) | Tak  | true      |                |
-| replacements      | tinyint(1) | Tak  | true      |                |
-| slider            | tinyint(1) | Tak  | true      |                |
-
-
-### Tabela: `information`
-
-| Nazwa            | Typ          | Null | Domyślnie | Dodatkowe      |
-|------------------|--------------|------|-----------|----------------|
-| information_id   | int(11)      | Nie  | Brak      | AUTO_INCREMENT |
-| text             | text         | Tak  | NULL      |                |
-| img_information  | varchar(255) | Tak  | NULL      |                |
-| show_img         | tinyint(1)   | Tak  | NULL      |                |
+| Nazwa      | Typ                                                    | Null | Domyślnie         | Dodatkowe   |
+| ---------- | ------------------------------------------------------ | ---- | ----------------- | ----------- |
+| id         | int(11)                                                | Nie  | AUTO_INCREMENT    | PRIMARY KEY |
+| schoolLogo | varchar(255)                                           | Nie  | Brak              |             |
+| viewMode   | enum('school', 'event', 'slider', 'alarm', 'assembly') | Nie  | 'school'          |             |
+| createdAt  | datetime                                               | Tak  | CURRENT_TIMESTAMP |             |
+| updatedAt  | datetime                                               | Tak  | CURRENT_TIMESTAMP |             |
 
 ### Tabela: `replacements`
 
-| Nazwa             | Typ          | Null | Domyślnie | Dodatkowe      |
-|-------------------|--------------|------|-----------|----------------|
-| replacements_id   | int(11)      | Nie  | Brak      | AUTO_INCREMENT |
-| lesson            | varchar(255) | Tak  | NULL      |                |
-| teacher           | varchar(255) | Tak  | NULL      |                |
-| branch            | varchar(255) | Tak  | NULL      |                |
-| subject           | varchar(255) | Tak  | NULL      |                |
-| room              | varchar(255) | Tak  | NULL      |                |
-| date              | varchar(255) | Tak  | NULL      |                |
-| deputy            | varchar(255) | Tak  | NULL      |                |
+| Nazwa     | Typ          | Null | Domyślnie         | Dodatkowe      |
+| --------- | ------------ | ---- | ----------------- | -------------- |
+| id        | int(11)      | Nie  | Brak              | AUTO_INCREMENT |
+| lesson    | varchar(255) | Nie  | Brak              |                |
+| teacher   | varchar(255) | Nie  | Brak              |                |
+| branch    | varchar(255) | Nie  | Brak              |                |
+| subject   | varchar(255) | Nie  | Brak              |                |
+| room      | varchar(255) | Nie  | Brak              |                |
+| date      | varchar(255) | Nie  | Brak              |                |
+| deputy    | varchar(255) | Nie  | Brak              |                |
+| createdAt | datetime     | Nie  | CURRENT_TIMESTAMP |                |
+| updatedAt | datetime     | Nie  | CURRENT_TIMESTAMP | ON UPDATE      |
 
 ### Tabela: `slider`
 
-| Nazwa         | Typ          | Null | Domyślnie | Dodatkowe      |
-|---------------|--------------|------|-----------|----------------|
-| slider_id     | int(11)      | Nie  | Brak      | AUTO_INCREMENT |
-| img_slider    | varchar(255) | Tak  | NULL      |                |
+| Nazwa     | Typ          | Null | Domyślnie         | Dodatkowe      |
+| --------- | ------------ | ---- | ----------------- | -------------- |
+| id        | int(11)      | Nie  | Brak              | AUTO_INCREMENT |
+| file      | varchar(255) | Nie  | Brak              |                |
+| createdAt | datetime     | Nie  | CURRENT_TIMESTAMP |                |
+| updatedAt | datetime     | Nie  | CURRENT_TIMESTAMP | ON UPDATE      |
 
 ### Tabela: `users`
 
-| Nazwa          | Typ           | Null | Domyślnie | Dodatkowe      |
-|----------------|---------------|------|-----------|----------------|
-| user_id        | int(11)       | Nie  | Brak      | AUTO_INCREMENT |
-| admin          | tinyint(1)    | Tak  | false     |                |
-| user_name      | varchar(255)  | Tak  | NULL      |     			 |
-| user_lastname  | varchar(255)  | Tak  | NULL      |  				 |
-| login          | varchar(255)  | Tak  | NULL      |  				 |
-| email          | varchar(255)  | Tak  | NULL      |  				 |
-| password       | varchar(255)  | Tak  | NULL      |  				 |
-| avatar         | varchar(255)  | Tak  | NULL      |  				 |
-
-
-
-
-
-
+| Nazwa                   | Typ          | Null | Domyślnie         | Dodatkowe      |
+| ----------------------- | ------------ | ---- | ----------------- | -------------- |
+| id                      | int(11)      | Nie  | Brak              | AUTO_INCREMENT |
+| name                    | varchar(255) | Nie  | Brak              |                |
+| lastname                | varchar(255) | Nie  | Brak              |                |
+| avatar                  | varchar(255) | Tak  | Brak              |                |
+| email                   | varchar(255) | Nie  | Brak              | UNIQUE         |
+| login                   | varchar(255) | Nie  | Brak              | UNIQUE         |
+| password                | varchar(255) | Nie  | Brak              |                |
+| isVerified              | tinyint(1)   | Tak  | false             |                |
+| lastLogin               | datetime     | Tak  | CURRENT_TIMESTAMP |                |
+| resetPasswordToken      | varchar(255) | Tak  | Brak              |                |
+| resetPasswordExpireAt   | datetime     | Tak  | Brak              |                |
+| verificationToken       | varchar(255) | Tak  | Brak              |                |
+| verificationTokenExpire | datetime     | Tak  | Brak              |                |
+| isAdmin                 | tinyint(1)   | Nie  | false             |                |
+| createdAt               | datetime     | Nie  | CURRENT_TIMESTAMP |                |
+| updatedAt               | datetime     | Nie  | CURRENT_TIMESTAMP | ON UPDATE      |
 
 ## Współtworzenie
-
-
 
 ## Problemy
 
 .
 
 ## Licencja
-
