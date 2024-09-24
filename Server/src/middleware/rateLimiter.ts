@@ -37,8 +37,8 @@ async function logAttack(req: Request): Promise<void> {
 
 const limiter: RateLimitRequestHandler = rateLimit({
     windowMs: 1 * 60 * 1000,                                                                // 1 minuta
-    max: 100,                                                                               // 100 requests per windowMs
-    message: { message: "Too many requests from this IP, please try again after 15 minutes" },
+    max: 150,                                                                               // 100 requests per windowMs
+    message: "Too many requests from this IP, please try again after 15 minutes" ,
     standardHeaders: true,
     legacyHeaders: false,
     handler: async (req: Request, res: Response) => {

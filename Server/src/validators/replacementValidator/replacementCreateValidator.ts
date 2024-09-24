@@ -1,10 +1,7 @@
 import Joi from 'joi';
 
-const nonEmptyString = Joi.string().max(32).required().messages({
-  'string.base': 'Pole {#label} musi być tekstem',
-  'string.empty': 'Pole {#label} nie może być puste',
-  'any.required': 'Pole {#label} jest wymagane',
-  'string.max': 'Pole {#label} nie może przekraczaæ {#limit} znaków'
+const nonEmptyString = Joi.required().messages({
+  'any.required': 'Pole {#label} jest wymagane'
 });
 
 export const createReplacementSchema = Joi.object({

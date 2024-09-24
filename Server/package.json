@@ -2,6 +2,7 @@
     "name": "server-school-panel",
     "version": "1.0.0",
     "main": "src/index.ts",
+    "private": true,
     "scripts": {
         "build": "rm -rf build/ && tsc -p tsconfig.build.json",
         "test": "jest --config jest.config.ts --detectOpenHandles --coverage --maxWorkers=1",

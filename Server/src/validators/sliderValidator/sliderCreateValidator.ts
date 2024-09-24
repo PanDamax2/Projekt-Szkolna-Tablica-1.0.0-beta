@@ -5,8 +5,8 @@ export const createSliderSchema = Joi.object({
         .valid('empty')
         .required()
         .messages({
-            'any.only': 'Pole imgUrl może mieć tylko wartość empty',
-            'string.empty': 'Pole imgUrl nie może być puste',
-            'any.required': 'Pole imgUrl jest wymagane'
+            'any.only': 'Pole file może mieć tylko wartość empty',
+            'string.empty': 'Pole file nie może być puste',
+            'any.required': 'Pole file jest wymagane'
         })
 });
